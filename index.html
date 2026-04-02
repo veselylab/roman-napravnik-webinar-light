@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  
+
+<!-- SEO Meta Tags -->
+<title>Přechod do juniorky | Webinář | Roman Nápravník</title>
+<meta name="description" content="Klíčový okamžik ve sportovní cestě vašeho dítěte. Online webinář s mentálním koučem Romanem Nápravníkem pro rodiče tenistů 8–13 let." />
+<meta property="og:title" content="Přechod do juniorky | Webinář | Roman Nápravník" />
+<meta property="og:description" content="Klíčový okamžik ve sportovní cestě vašeho dítěte. Online webinář s mentálním koučem Romanem Nápravníkem pro rodiče tenistů 8–13 let." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Přechod do juniorky | Webinář | Roman Nápravník" />
+<meta name="twitter:description" content="Klíčový okamžik ve sportovní cestě vašeho dítěte. Online webinář s mentálním koučem Romanem Nápravníkem pro rodiče tenistů 8–13 let." />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://app.vesely.ai/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=2958');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='GDcc9MvwZ';
+  var apiBase='https://app.vesely.ai';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">Thank you for purchasing '+pName.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'.</p><button onclick="document.getElementById(\'payment-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Roman <span>Nápravník</span></a>
+    <a class="nav-cta" href="#registrace">Vybrat termín</a>
+  </div>
+</nav>
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <span class="hero-badge">Online webinář pro rodiče</span>
+    <h1 class="hero-title" style="color:#fff">Přechod do<br/><em>juniorky</em> je<br/>zlomový moment.</h1>
+    <p class="hero-sub">Jak podpořit dítě, aniž bychom mu ublížili. Webinář pro rodiče tenistů 8–13 let s mentálním koučem Romanem Nápravníkem.</p>
+    <div class="hero-actions">
+      <a href="#registrace" class="btn-gold">Registrovat se →</a>
+      <a href="#proc" class="btn-outline">Zjistit více</a>
+    </div>
+  </div>
+</section>
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><span class="stat-num">45</span><span class="stat-label">let v tenisu</span></div>
+      <div class="stat-item"><span class="stat-num">25+</span><span class="stat-label">let trenérské praxe</span></div>
+      <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">synové — sportovci</span></div>
+      <div class="stat-item"><span class="stat-num">100s</span><span class="stat-label">odkoučovaných zápasů</span></div>
+    </div>
+  </div>
+</section>
+<section id="proc">
+  <div class="container">
+    <div class="proc-layout">
+      <div class="proc-intro">
+        <span class="eyebrow">Proč na tom záleží</span>
+        <h2>Toto období<br/><em style="color:var(--gold)">formuje vše.</em></h2>
+        <div class="divider"></div>
+        <p style="color:var(--gray);font-size:1rem;line-height:1.85">Přechod z baby tenisu do juniorky není jen technická změna. Je to kritická fáze, která rozhoduje o tom, jestli dítě bude tenis milovat — nebo za pár let skončí.</p>
+      </div>
+      <div class="proc-cards">
+        <div class="proc-card"><span class="proc-num">01</span><div class="proc-body"><h3>Ztráta motivace</h3><p>Dítě, které ještě nedávno žilo tenisem, najednou nechce trénovat.</p></div></div>
+        <div class="proc-card"><span class="proc-num">02</span><div class="proc-body"><h3>Přetlak nebo povolení?</h3><p>Kdy tlačit a kdy nechat dítě dýchat? Strach ze špatného rozhodnutí paralyzuje celou rodinu.</p></div></div>
+        <div class="proc-card"><span class="proc-num">03</span><div class="proc-body"><h3>Propad sebevědomí</h3><p>V juniorce jsou soupeři silnější. První porážky bývají tvrdé.</p></div></div>
+        <div class="proc-card"><span class="proc-num">04</span><div class="proc-body"><h3>Napětí rodič–trenér</h3><p>Bez otevřené komunikace vznikají nedorozumění. Dítě stojí uprostřed.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="prokoho">
+  <div class="container">
+    <div class="prokoho-inner">
+      <div class="prokoho-img">
+        <img src="https://42cd338b43.clvaw-cdnwnd.com/21a6c64f9c0ea01eee8120e8d426c940/200000008-92c7f92c80/RN8.jpeg" alt="Roman Nápravník"/>
+        <div class="prokoho-img-border"></div>
+      </div>
+      <div>
+        <span class="eyebrow">Pro koho je webinář</span>
+        <h2>Jste zde,<br/>pokud...</h2>
+        <div class="divider"></div>
+        <ul class="check-list">
+          <li>Vaše dítě (8–13 let) přechází nebo se blíží přechodu do juniorské kategorie</li>
+          <li>Nevíte, jak nastavit správnou míru tlaku a povzbuzení</li>
+          <li>Cítíte napětí v komunikaci s trenérem nebo přímo s dítětem</li>
+          <li>Záleží vám na vztahu dítěte ke sportu — nejenom na výsledcích</li>
+          <li>Chcete být pro dítě oporou, ne zdrojem stresu</li>
+          <li>Jste trenér a hledáte nástroje pro práci s rodiči</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="ziskate">
+  <div class="container">
+    <span class="eyebrow">Obsah webináře</span>
+    <h2>Co si odnesete</h2>
+    <div class="divider"></div>
+    <div class="ziskate-grid">
+      <div class="ziskate-item"><span class="ziskate-num">01</span><span class="ziskate-text">Jak se mění myšlení a chování dítěte v přechodovém období — a co to od vás jako rodiče vyžaduje</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">02</span><span class="ziskate-text">Jak reagovat na výkyvy motivace, aniž byste situaci zhoršili nebo ztráceli nervy</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">03</span><span class="ziskate-text">Nejčastější chyby rodičů v tomto období — a jak se jim vědomě vyhnout</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">04</span><span class="ziskate-text">Jak nastavit zdravá očekávání kolem výkonu, výsledků a tréninkové zátěže</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">05</span><span class="ziskate-text">Jak komunikovat s trenérem tak, aby se dítě cítilo podporované z obou stran</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">06</span><span class="ziskate-text">Jak rozpoznat varovné signály přetížení nebo ztráty chuti — a co s nimi dělat</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">07</span><span class="ziskate-text">Jak psychicky podpořit dítě po prohrách bez přehnaného soucitu nebo nátlaku</span></div>
+      <div class="ziskate-item"><span class="ziskate-num">08</span><span class="ziskate-text">Praktické nástroje pro každodenní komunikaci s dítětem o sportu a výkonu</span></div>
+    </div>
+  </div>
+</section>
+<section id="roman" style="padding:0">
+  <div class="roman-inner">
+    <div class="roman-photo">
+      <img src="https://42cd338b43.clvaw-cdnwnd.com/21a6c64f9c0ea01eee8120e8d426c940/200000008-92c7f92c80/RN8.jpeg" alt="Roman Nápravník"/>
+    </div>
+    <div class="roman-content">
+      <span class="eyebrow">O lektorovi</span>
+      <h2>Roman<br/>Nápravník</h2>
+      <div class="divider"></div>
+      <p>Tenisu se věnuji 45 let — nejdřív jako hráč, pak jako trenér a mentální coach. Vím, co se odehrává na kurtu i v hlavě dítěte v klíčových momentech přechodu.</p>
+      <blockquote class="roman-quote">"Sportovní kouč by měl být pro klienta nejen průvodcem, ale i jeho kamarádem a velkým fanouškem."</blockquote>
+      <p>Jako otec tří synů jsem prošel tímto obdobím z obou stran. Za 25 let trenérské praxe jsem viděl, jak správný přístup rodičů dokáže dítěti prorazit cestu.</p>
+      <div class="roman-stats">
+        <div class="rstat"><span class="rstat-num">45</span><span class="rstat-label">let v tenisu</span></div>
+        <div class="rstat"><span class="rstat-num">25+</span><span class="rstat-label">let praxe</span></div>
+        <div class="rstat"><span class="rstat-num">3</span><span class="rstat-label">synové</span></div>
+        <div class="rstat"><span class="rstat-num">100s</span><span class="rstat-label">zápasů</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="format">
+  <div class="container">
+    <span class="eyebrow">Formát</span>
+    <h2>Jak webinář probíhá</h2>
+    <div class="divider"></div>
+    <div class="format-steps">
+      <div class="format-step"><div class="step-num">1</div><div class="step-title">Registrace</div><p class="step-text">Vyberete termín a dostanete potvrzení e-mailem</p></div>
+      <div class="format-step"><div class="step-num">2</div><div class="step-title">Připojení</div><p class="step-text">Online přes odkaz. Stačí počítač nebo telefon</p></div>
+      <div class="format-step"><div class="step-num">3</div><div class="step-title">~90 minut</div><p class="step-text">Výklad s příklady z praxe</p></div>
+      <div class="format-step"><div class="step-num">4</div><div class="step-title">Vaše otázky</div><p class="step-text">Vyhrazený prostor pro diskusi na konci</p></div>
+      <div class="format-step"><div class="step-num">5</div><div class="step-title">Odnášíte si</div><p class="step-text">Nástroje použitelné ještě ten samý večer</p></div>
+    </div>
+  </div>
+</section>
+<section id="registrace">
+  <div class="container">
+    <div class="reg-inner">
+      <div>
+        <span class="eyebrow">Registrace</span>
+        <h2>Vyberte termín</h2>
+        <div class="divider"></div>
+        <p style="color:var(--gray);font-size:.93rem;line-height:1.8">Místa jsou omezená. Termín vyberte přímo ve formuláři. Oba termíny jsou obsahově totožné.</p>
+        <div class="reg-meta">
+          <div class="reg-meta-item">Online — bez cestování, z domova</div>
+          <div class="reg-meta-item">Prostor pro vaše otázky</div>
+          <div class="reg-meta-item">Registrace je bezplatná</div>
+          <div class="reg-meta-item">Potvrzení e-mailem ihned po odeslání</div>
+        </div>
+      </div>
+      <div class="form-wrap">
+        <iframe id="regFrame" src="https://app.vesely.ai/forms/y5uuvffz" title="Registrační formulář" scrolling="no" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="faq">
+  <div class="container--narrow">
+    <span class="eyebrow">FAQ</span>
+    <h2>Časté otázky</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Pro koho přesně je webinář určen?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Primárně pro rodiče dětí ve věku 8–13 let v přechodovém období. Hodí se i pro rodiče starších/mladších dětí a pro trenéry.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Má smysl přihlásit se, když přechod u nás ještě nenastal?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Rozhodně. Rodiče připravení předem reagují klidněji, když přechod nastane.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Jak se k webináři připojím?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Po registraci dostanete e-mail s přístupovým odkazem. Stačí počítač, tablet nebo telefon.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Bude prostor pro moje otázky?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Ano. Na konci je vyhrazený čas na otázky — živě i předem zadaných v registračním formuláři.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Který termín mám vybrat?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Oba termíny jsou obsahově totožné. Vyberte ten, který vám lépe sedí do kalendáře.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Mohu se přihlásit jako trenér?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Samozřejmě. Webinář nabízí i pohled na komunikaci s rodiči hráčů.</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="zaver">
+  <div class="container">
+    <span class="eyebrow">Neváhejte</span>
+    <h2 style="color:#fff">Váš přístup<br/><em style="color:var(--gold)">rozhoduje.</em></h2>
+    <p>Přechod do juniorky je jednou z nejvýznamnějších etap v tenisové cestě dítěte. Roman vám ukáže cestu, jak být skutečnou oporou.</p>
+    <a href="#registrace" class="btn-gold">Vybrat termín webináře →</a>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <p style="margin-bottom:10px">Roman Nápravník — Sportovní mentální coach</p>
+    <p><a href="mailto:napravniksportkouc@gmail.com">napravniksportkouc@gmail.com</a> · +420 604 555 064 · Dvůr Králové nad Labem</p>
+    <p style="margin-top:10px"><a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a> · <a href="https://www.romannapravnik.cz">romannapravnik.cz</a></p>
+    <p style="margin-top:14px;opacity:.3">© 2025 Roman Nápravník. Všechna práva vyhrazena.</p>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

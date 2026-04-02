@@ -201,13 +201,14 @@
 </script>  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav id="mainNav">
+<nav data-section="navbar" id="mainNav">
   <div class="nav-inner">
     <a class="nav-logo" href="#">Roman <span>Nápravník</span></a>
     <a class="nav-cta" href="#registrace">Vybrat termín</a>
   </div>
 </nav>
-<section id="hero">
+<section data-section="hero" id="hero">
+  
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
@@ -216,24 +217,24 @@
     <p class="hero-sub">Jak podpořit dítě, aniž bychom mu ublížili. Webinář pro rodiče tenistů 8–13 let s mentálním koučem Romanem Nápravníkem.</p>
     <div class="hero-actions">
       <a href="#registrace" class="btn-gold">Registrovat se →</a>
-      <a href="#proc" class="btn-outline">Zjistit více</a>
+      <a href="https://www.romannapravnik.cz/" class="btn-outline">OSOBNÍ STRÁNKY</a>
     </div>
   </div>
 </section>
-<section id="stats">
+<section data-section="stats" id="stats">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item"><span class="stat-num">45</span><span class="stat-label">let v tenisu</span></div>
       <div class="stat-item"><span class="stat-num">25+</span><span class="stat-label">let trenérské praxe</span></div>
       <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">synové — sportovci</span></div>
-      <div class="stat-item"><span class="stat-num">100s</span><span class="stat-label">odkoučovaných zápasů</span></div>
+      <div class="stat-item"><span class="stat-num">Tisíce</span><span class="stat-label">odkoučovaných zápasů</span></div>
     </div>
   </div>
 </section>
-<section id="proc">
+<section data-section="benefits" id="proc">
   <div class="container">
     <div class="proc-layout">
-      <div class="proc-intro">
+      <div>
         <span class="eyebrow">Proč na tom záleží</span>
         <h2>Toto období<br/><em style="color:var(--gold)">formuje vše.</em></h2>
         <div class="divider"></div>
@@ -248,11 +249,11 @@
     </div>
   </div>
 </section>
-<section id="prokoho">
+<section data-section="about" id="prokoho">
   <div class="container">
     <div class="prokoho-inner">
       <div class="prokoho-img">
-        <img src="https://42cd338b43.clvaw-cdnwnd.com/21a6c64f9c0ea01eee8120e8d426c940/200000008-92c7f92c80/RN8.jpeg" alt="Roman Nápravník"/>
+        <img src="https://app.vesely.ai/objects/generated-images/95/1775142611270-63700a132441102b.png" alt="Roman Nápravník"/>
         <div class="prokoho-img-border"></div>
       </div>
       <div>
@@ -271,7 +272,7 @@
     </div>
   </div>
 </section>
-<section id="ziskate">
+<section data-section="features" id="ziskate">
   <div class="container">
     <span class="eyebrow">Obsah webináře</span>
     <h2>Co si odnesete</h2>
@@ -288,7 +289,7 @@
     </div>
   </div>
 </section>
-<section id="roman" style="padding:0">
+<section data-section="testimonials" id="roman" style="padding:0">
   <div class="roman-inner">
     <div class="roman-photo">
       <img src="https://42cd338b43.clvaw-cdnwnd.com/21a6c64f9c0ea01eee8120e8d426c940/200000008-92c7f92c80/RN8.jpeg" alt="Roman Nápravník"/>
@@ -309,7 +310,7 @@
     </div>
   </div>
 </section>
-<section id="format">
+<section data-section="how-it-works" id="format">
   <div class="container">
     <span class="eyebrow">Formát</span>
     <h2>Jak webinář probíhá</h2>
@@ -323,7 +324,7 @@
     </div>
   </div>
 </section>
-<section id="registrace">
+<section data-section="contact" id="registrace">
   <div class="container">
     <div class="reg-inner">
       <div>
@@ -344,7 +345,7 @@
     </div>
   </div>
 </section>
-<section id="faq">
+<section data-section="faq" id="faq">
   <div class="container--narrow">
     <span class="eyebrow">FAQ</span>
     <h2>Časté otázky</h2>
@@ -353,13 +354,13 @@
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Pro koho přesně je webinář určen?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Primárně pro rodiče dětí ve věku 8–13 let v přechodovém období. Hodí se i pro rodiče starších/mladších dětí a pro trenéry.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Má smysl přihlásit se, když přechod u nás ještě nenastal?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Rozhodně. Rodiče připravení předem reagují klidněji, když přechod nastane.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Jak se k webináři připojím?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Po registraci dostanete e-mail s přístupovým odkazem. Stačí počítač, tablet nebo telefon.</p></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Bude prostor pro moje otázky?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Ano. Na konci je vyhrazený čas na otázky — živě i předem zadaných v registračním formuláři.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Bude prostor pro moje otázky?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Ano. Na konci je vyhrazený čas na otázky.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Který termín mám vybrat?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Oba termíny jsou obsahově totožné. Vyberte ten, který vám lépe sedí do kalendáře.</p></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Mohu se přihlásit jako trenér?</span><span class="faq-icon">+</span></div><div class="faq-a"><p>Samozřejmě. Webinář nabízí i pohled na komunikaci s rodiči hráčů.</p></div></div>
     </div>
   </div>
 </section>
-<section id="zaver">
+<section data-section="cta" id="zaver">
   <div class="container">
     <span class="eyebrow">Neváhejte</span>
     <h2 style="color:#fff">Váš přístup<br/><em style="color:var(--gold)">rozhoduje.</em></h2>
@@ -367,7 +368,7 @@
     <a href="#registrace" class="btn-gold">Vybrat termín webináře →</a>
   </div>
 </section>
-<footer>
+<footer data-section="footer">
   <div class="container">
     <p style="margin-bottom:10px">Roman Nápravník — Sportovní mentální coach</p>
     <p><a href="mailto:napravniksportkouc@gmail.com">napravniksportkouc@gmail.com</a> · +420 604 555 064 · Dvůr Králové nad Labem</p>

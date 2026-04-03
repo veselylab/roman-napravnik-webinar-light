@@ -4,7 +4,7 @@ var heroImg=new Image();
   (function(){
     var img=document.getElementById('romanProkohoImg');
     if(!img)return;
-    var src='ROMAN_PHOTO_B64';
+    var src='https://raw.githubusercontent.com/veselylab/roman-napravnik-webinar-light/main/roman.jpg';
     img.src=src;
   })();
   window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>80);});

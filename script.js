@@ -1,8 +1,6 @@
-// Hero bg
-  var heroImg=new Image();
+var heroImg=new Image();
   heroImg.onload=function(){document.getElementById('heroBg').style.backgroundImage='url('+this.src+')';};
-  heroImg.src='https://app.vesely.ai/objects/generated-images/95/1775130104648-9d28d925e043fa8b.png';
-  // Prokoho section — Roman's real photo injected via JS
+  heroImg.src='https://raw.githubusercontent.com/veselylab/roman-napravnik-webinar-light/main/hero.jpg';
   (function(){
     var img=document.getElementById('romanProkohoImg');
     if(!img)return;
